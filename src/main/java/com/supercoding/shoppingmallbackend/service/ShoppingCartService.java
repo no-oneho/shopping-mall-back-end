@@ -42,7 +42,7 @@ public class ShoppingCartService {
         Product product = productRepository.findById(shoppingCartItemRequest.getProductId()).orElseThrow(
                 ()->new CustomException(ProductErrorCode.NOTFOUND_PRODUCT)
         );
-        ProductInCartResponse productResponse = ProductInCartResponse.from(product, getGenre(product.getGenre().getId()));
+        ProductSimpleResponse productResponse = ProductSimpleResponse.from(product, getGenre(product.getGenre().getId()));
 
         // consuemrId, productId로 장바구니 조회
         ShoppingCart shoppingCartItem = shoppingCartRepository.findByConsumerIdAndProductId(consumerId, shoppingCartItemRequest.getProductId()).orElse(null);
